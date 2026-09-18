@@ -32,15 +32,15 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-cream">
-      {/* Left Side - Image */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-brand-black">
+    <div className="min-h-[100dvh] flex relative bg-brand-black">
+      {/* Background Image - Absolute on Mobile, Relative half-width on Desktop */}
+      <div className="absolute inset-0 z-0 lg:relative lg:w-1/2 bg-brand-black">
         <img 
           src="/image.png" 
           alt="Qué Padre Chilaquería" 
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 lg:opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 to-transparent flex items-end p-12">
+        <div className="hidden lg:flex absolute inset-0 bg-gradient-to-t from-brand-black/90 to-transparent items-end p-12">
           <div className="text-white">
             <h1 className="text-5xl font-bold mb-4">Qué Padre</h1>
             <p className="text-xl text-gray-300">Sistema de Control de Inventarios</p>
@@ -48,18 +48,18 @@ export const LoginPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md">
-          <div className="flex flex-col items-center mb-10">
-            <div className="w-24 h-24 mb-4 rounded-full overflow-hidden border-4 border-brand-yellow shadow-lg">
+      {/* Form Container - Overlapping on Mobile, Next to Image on Desktop */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 py-12 sm:p-8 z-10 relative overflow-y-auto min-h-[100dvh]">
+        <div className="w-full max-w-md bg-white/95 backdrop-blur-md lg:bg-white p-8 rounded-3xl shadow-2xl lg:shadow-none border border-white/20 lg:border-transparent my-auto">
+          <div className="flex flex-col items-center mb-8">
+            <div className="w-24 h-24 mb-4 rounded-full overflow-hidden border-4 border-brand-yellow shadow-lg bg-white">
               <img src="/que-padre-chilaquiles-logo.jpg" alt="Logo Qué Padre" className="w-full h-full object-cover" />
             </div>
-            <h2 className="text-3xl font-bold text-brand-black">Iniciar Sesión</h2>
-            <p className="text-gray-500 mt-2">Ingresa tus credenciales para acceder</p>
+            <h2 className="text-3xl font-bold text-brand-black text-center leading-tight">Iniciar Sesión</h2>
+            <p className="text-gray-500 mt-2 text-center text-sm">Ingresa tus credenciales para acceder</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
               <div className="bg-red-50 text-red-600 p-4 rounded-xl flex items-center gap-3 text-sm font-medium border border-red-100">
                 <AlertCircle size={20} />
@@ -73,7 +73,7 @@ export const LoginPage: React.FC = () => {
                 type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent transition-all bg-white"
+                className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-100 focus:outline-none focus:ring-0 focus:border-brand-yellow transition-all bg-white/80 font-medium"
                 placeholder="ejemplo@quepadre.com"
                 required
               />
@@ -85,7 +85,7 @@ export const LoginPage: React.FC = () => {
                 type="password" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent transition-all bg-white"
+                className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-100 focus:outline-none focus:ring-0 focus:border-brand-yellow transition-all bg-white/80 font-medium"
                 placeholder="••••••••"
                 required
               />
@@ -94,7 +94,7 @@ export const LoginPage: React.FC = () => {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-brand-black hover:bg-black text-white font-bold py-3 px-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-black focus:ring-offset-2 focus:ring-offset-cream disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center h-12"
+              className="w-full bg-brand-black hover:bg-black text-white font-bold py-4 px-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 flex justify-center items-center mt-2"
             >
               {loading ? (
                 <div className="w-6 h-6 border-2 border-brand-yellow border-t-transparent rounded-full animate-spin"></div>
@@ -104,10 +104,10 @@ export const LoginPage: React.FC = () => {
             </button>
           </form>
 
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500 text-center">
+          <div className="mt-8 pt-6 border-t border-gray-200/60">
+            <p className="text-xs text-gray-500 text-center leading-relaxed">
               Credenciales de prueba:<br/>
-              <span className="font-mono bg-gray-100 px-2 py-1 rounded">admin@quepadre.com</span> / <span className="font-mono bg-gray-100 px-2 py-1 rounded">admin123</span>
+              <span className="font-mono bg-gray-100 text-brand-black px-2 py-1 rounded font-bold mt-1 inline-block">admin@quepadre.com</span> / <span className="font-mono bg-gray-100 text-brand-black px-2 py-1 rounded font-bold mt-1 inline-block">admin123</span>
             </p>
           </div>
         </div>
